@@ -1,0 +1,16 @@
+{
+  "name": "reference_drawing_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && npm run copy-static-files",
+    "copy-static-files": "copyfiles -u 1 'src/**/*.!(ts)' dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "copyfiles": "^2.4.1"
+  }
+}
