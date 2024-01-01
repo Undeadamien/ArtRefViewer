@@ -1,16 +1,22 @@
 {
-  "name": "reference_drawing_app",
+  "name": "ArtRefViewer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && npm run copy-static-files",
+    "clear": "rm -rf ./dist/*",
+    "build": "npm run clear && webpack && npm run copy-static-files",
+    "start": "npm run build && open ./dist/index.html",
     "copy-static-files": "copyfiles -u 1 'src/**/*.!(ts)' dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "copyfiles": "^2.4.1"
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

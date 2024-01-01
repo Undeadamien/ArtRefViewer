@@ -1,0 +1,95 @@
+body {
+  background-color: #000;
+  margin: 0;
+}
+
+.card-name {
+  border: 2px solid #fff;
+  border-radius: 8px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  user-select: none;
+}
+
+.lower-band button:active {
+  background-color: #fff;
+  color: #000;
+}
+
+.lower-band button:first-child {
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.lower-band button:last-child {
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lower-band button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-weight: 700;
+  width: 48px;
+}
+
+.lower-band,
+.upper-band {
+  display: flex;
+  position: fixed;
+  z-index: 9999;
+}
+
+.lower-band {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  color: #fff;
+  height: 32px;
+  justify-content: center;
+  width: 100%;
+}
+
+.reference-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+}
+
+.reference {
+  max-height: 100%;
+}
+
+.search-input,
+.upper-band {
+  color: #fff;
+  text-align: center;
+}
+
+.search-input::placeholder {
+  color: #fff;
+}
+
+.search-input {
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-left-width: 0;
+  border-right-width: 0;
+  font-weight: 700;
+  outline: 0;
+  width: 320px;
+}
+
+.upper-band {
+  background-color: rgba(0, 0, 0, 0.5);
+  flex-direction: row;
+  height: 32px;
+  justify-content: center;
+  width: 100%;
+}
