@@ -4,6 +4,7 @@ body {
 }
 
 .card-name {
+  position: relative;
   border: 2px solid #fff;
   border-radius: 8px;
   font-weight: 700;
@@ -86,10 +87,21 @@ body {
   width: 320px;
 }
 
+.timer {
+  border: 2px solid #fff;
+  border-radius: 8px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  user-select: none;
+}
+
 .upper-band {
   background-color: rgba(0, 0, 0, 0.5);
   flex-direction: row;
+  justify-content: space-between;
   height: 32px;
-  justify-content: center;
   width: 100%;
 }

@@ -34,7 +34,8 @@ async function getNextImage(): Promise<void> {
     if (card) {
         await updateImage(card);
     } else {
-        imageList.add(await getRequestUrl().then((url) => requestApi(url)));
+        let nextImage = await getRequestUrl().then((url) => requestApi(url));
+        imageList.add(nextImage);
         await updateImage(imageList.next()!); //probably a bad idea
     }
 }
@@ -45,6 +46,12 @@ async function updateImage(card: Card): Promise<void> {
         nameDisplay.innerText = card.name;
     }
 }
+
+searchInput.addEventListener("keydown", function (event) {
+    if (event.key == "Enter") {
+        getNextImage();
+    }
+});
 
 previousButton.onclick = () => getPreviousImage();
 nextButton.onclick = () => getNextImage();
