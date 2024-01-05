@@ -9,20 +9,53 @@
   </head>
 
   <body>
-    <div class="upper-band">
-      <p id="nameDisplay" class="card-name">. . .</p>
-      <p id="timerDisplay" class="timer">00:00:00</p>
+    <!--overlay view-->
+    <div id="overlayDisplay" class="app-overlay">
+      <div class="upper-band">
+        <p id="nameDisplay" class="card-name">. . .</p>
+      </div>
+
+      <div class="reference-container">
+        <img id="refDisplay" class="reference" draggable="false" />
+      </div>
+
+      <div class="lower-band">
+        <button id="previousButton" class="previous-image" title="Previous image">◀◀</button>
+        <button id="pauseButton" class="pause-button" title="Pause Session">❚❚</button>
+        <p id="timerDisplay" class="timer">00:00:00</p>
+        <button id="stopButton" class="stop-button" title="Interrupt Session">&#x2588;</button>
+        <button id="nextButton" class="next-button" title="Next image">▶▶</button>
+      </div>
     </div>
 
-    <div class="reference-container">
-      <img id="refDisplay" class="reference" draggable="false" />
-    </div>
+    <!--form view-->
+    <header>
+      <p>Header</p>
+    </header>
+    <main>
+      <form>
+        <h1>Stylish Form</h1>
 
-    <div class="lower-band">
-      <button id="previousButton" class="previous-image" title="Previous image">◀</button>
-      <input id="searchInput" class="search-input" placeholder=". . ." />
-      <button id="nextButton" class="next-button" title="Random image">▶</button>
-    </div>
+        <label for="query">Query:</label>
+        <input type="text" id="query" name="query" />
+
+        <label for="number">Number:</label>
+        <input type="number" id="number" name="number" min="1" value="1" />
+
+        <label for="duration">Select Duration:</label>
+        <select id="duration" name="duration" value="">
+          <option value="30">30 secondes</option>
+          <option value="60">1 minute</option>
+          <option value="90">1 minute et 30 seconds</option>
+          <option value="600">5 minutes</option>
+        </select>
+        <button id="switchButton">Start</button>
+      </form>
+    </main>
+    <footer>
+      <p>Footer</p>
+    </footer>
+
     <script src="scripts/index.js"></script>
   </body>
 </html>

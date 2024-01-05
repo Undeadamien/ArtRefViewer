@@ -1,6 +1,77 @@
 body {
+  color: #fff;
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #000;
   margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+header,
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #222;
+  height: 10vh;
+  padding: auto;
+  text-align: center;
+  text-align: center;
+}
+main {
+  background-color: white;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  background-color: #222;
+  min-width: 400px;
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  width: 25%;
+  border-radius: 8px;
+}
+
+form input {
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+form select {
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 10px;
+}
+form button {
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 10px;
+  height: 36px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+form button:hover {
+  background-color: #222;
+  color: white;
+}
+form h1 {
+  text-align: center;
+}
+
+.app-overlay {
+  background-color: #222;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
 }
 
 .card-name {
@@ -28,11 +99,15 @@ body {
 .lower-band button:last-child {
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
+  border-right: 2px solid #fff;
 }
 
 .lower-band button {
   background-color: transparent;
-  border: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 0px;
+  border-top: 2px solid #fff;
   color: #fff;
   font-weight: 700;
   width: 48px;
@@ -55,6 +130,8 @@ body {
 }
 
 .reference-container {
+  color: transparent;
+  background-color: transparent;
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -67,29 +144,9 @@ body {
   max-height: 100%;
 }
 
-.search-input,
-.upper-band {
-  color: #fff;
-  text-align: center;
-}
-
-.search-input::placeholder {
-  color: #fff;
-}
-
-.search-input {
-  background-color: transparent;
-  border: 2px solid #fff;
-  border-left-width: 0;
-  border-right-width: 0;
-  font-weight: 700;
-  outline: 0;
-  width: 320px;
-}
-
 .timer {
   border: 2px solid #fff;
-  border-radius: 8px;
+  border-right: 0px solid #fff;
   font-weight: 700;
   line-height: 30px;
   margin: 0;
@@ -99,9 +156,29 @@ body {
 }
 
 .upper-band {
+  top: 1px;
+  color: #fff;
+  text-align: center;
   background-color: rgba(0, 0, 0, 0.5);
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   height: 32px;
   width: 100%;
+}
+@keyframes fadeInOut {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOutIn {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

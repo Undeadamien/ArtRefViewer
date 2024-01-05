@@ -24,6 +24,3 @@ export class Timer {
         }
     }
 }
-
-let timer = new Timer();
-timer.start();
