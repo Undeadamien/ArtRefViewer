@@ -7,6 +7,7 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 header,
 footer {
   display: flex;
@@ -18,8 +19,9 @@ footer {
   text-align: center;
   text-align: center;
 }
+
 main {
-  background-color: white;
+  background-color: #fff;
   height: 80vh;
   display: flex;
   align-items: center;
@@ -30,10 +32,10 @@ form {
   background-color: #222;
   min-width: 400px;
   display: grid;
-  gap: 20px;
   padding: 20px;
   width: 25%;
   border-radius: 8px;
+  gap: 20px;
 }
 
 form input {
@@ -47,6 +49,7 @@ form select {
   border-radius: 8px;
   padding: 10px;
 }
+
 form button {
   border: 1px solid #555;
   border-radius: 8px;
@@ -56,10 +59,12 @@ form button {
     background-color 0.3s,
     color 0.3s;
 }
+
 form button:hover {
   background-color: #222;
-  color: white;
+  color: #fff;
 }
+
 form h1 {
   text-align: center;
 }
@@ -106,7 +111,7 @@ form h1 {
   background-color: transparent;
   border-bottom: 2px solid #fff;
   border-left: 2px solid #fff;
-  border-right: 0px;
+  border-right: 0;
   border-top: 2px solid #fff;
   color: #fff;
   font-weight: 700;
@@ -121,7 +126,7 @@ form h1 {
 }
 
 .lower-band {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #00000080;
   bottom: 0;
   color: #fff;
   height: 32px;
@@ -146,7 +151,7 @@ form h1 {
 
 .timer {
   border: 2px solid #fff;
-  border-right: 0px solid #fff;
+  border-right: 0 solid #fff;
   font-weight: 700;
   line-height: 30px;
   margin: 0;
@@ -159,25 +164,29 @@ form h1 {
   top: 1px;
   color: #fff;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #00000080;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 32px;
   width: 100%;
 }
+
 @keyframes fadeInOut {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
+
 @keyframes fadeOutIn {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
