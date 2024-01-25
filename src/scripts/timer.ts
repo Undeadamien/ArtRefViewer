@@ -7,6 +7,10 @@ export class Timer {
         this.tick = this.tick.bind(this); // set "this" context for setInterval
     }
 
+    public getStartTime() {
+        return this.startingTime;
+    }
+
     private tick() {
         this.remainingTime--;
         if (this.remainingTime <= 0) {
@@ -14,13 +18,24 @@ export class Timer {
         }
     }
 
+    public setStartTime(time: number) {
+        this.startingTime = time;
+    }
+
+    public reset() {
+        this.remainingTime = this.startingTime;
+    }
+
     public start() {
-        this.tickCall = setInterval(this.tick, 1) as NodeJS.Timeout;
+        if (this.tickCall === null) {
+            this.tickCall = setInterval(this.tick, 1) as NodeJS.Timeout;
+        }
     }
 
     public stop() {
         if (this.tickCall !== null) {
             clearInterval(this.tickCall);
+            this.tickCall = null;
         }
     }
 }
