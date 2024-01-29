@@ -1,16 +1,20 @@
-import { Card } from "./card";
-import { CardList } from "./cardList";
+import { Card, CardList } from "./card";
 import { Form } from "./form";
 import { Timer } from "./timer";
 import { Api } from "./api";
 
 const prevBut = document.getElementById("previousButton") as HTMLButtonElement;
 const nextBut = document.getElementById("nextButton") as HTMLButtonElement;
-const imageDis = document.getElementById("refDisplay") as HTMLImageElement;
-const nameDis = document.getElementById("nameDisplay") as HTMLParagraphElement;
+const stopBut = document.getElementById("stopButton") as HTMLButtonElement;
+
 const formDis = document.getElementById("form") as HTMLFormElement;
 const overlayDis = document.getElementById("overlayDisplay") as HTMLDivElement;
-const stopBut = document.getElementById("stopButton") as HTMLButtonElement;
+const nameDis = document.getElementById("nameDisplay") as HTMLParagraphElement;
+const imageDis = document.getElementById("refDisplay") as HTMLImageElement;
+const timerDis = document.getElementById("timerDisplay") as HTMLImageElement;
+
+const timer = new Timer();
+const cardList: CardList = new CardList();
 
 async function getCardList(amount: number, query: string): Promise<Card[]> {
     let promises = Array.from({ length: amount }, () => Api.request(query));
@@ -26,6 +30,7 @@ function getFormValues(): Form {
     };
 }
 function handleFormSubmit(event: Event) {
+    // should replace alerts with some pop up
     event.preventDefault();
     let formValues = getFormValues();
     if (isNaN(formValues.number)) {
@@ -38,11 +43,36 @@ function handleFormSubmit(event: Event) {
     }
     startSession();
 }
+function updateTimerDisplay(time: number) {
+    const hours = String(Math.floor(time / 3600)).padStart(2, "0");
+    const minutes = String(Math.floor((time % 3600) / 60)).padStart(2, "0");
+    const seconds = String(Math.floor(time % 60)).padStart(2, "0");
+    timerDis.innerHTML = `${hours}:${minutes}:${seconds}`;
+}
+async function updateImage() {
+    const card: Card = cardList.getCurrent();
+    nameDis.innerHTML = card.name;
+    imageDis.src = card.image_uris.art_crop;
+    timer.reset();
+    timer.start();
+}
+
+async function handleTimerEnd() {
+    if (cardList.isCurrentLast()) {
+        stopSession();
+        return;
+    }
+    cardList.setToNext();
+    updateImage();
+}
 
 async function startSession() {
-    let formValues = getFormValues();
-    let cardList: CardList = new CardList();
+    const formValues = getFormValues();
     cardList.setCards(await getCardList(formValues.number, formValues.query));
+    cardList.setCurrent(0);
+    timer.setStartTime(formValues.duration);
+
+    updateImage();
 
     // fadeIn overlay
     overlayDis.style.animation = "fadeInOut 0.5s ease-in-out";
@@ -50,6 +80,9 @@ async function startSession() {
 }
 
 function stopSession() {
+    imageDis.src = "";
+    timer.stop();
+
     // fadeOut overlay
     overlayDis.style.animation = "fadeOutIn 0.5s ease-in-out";
     setTimeout(() => (overlayDis.style.visibility = "hidden"), 450);
@@ -57,3 +90,5 @@ function stopSession() {
 
 formDis.addEventListener("submit", handleFormSubmit);
 stopBut.addEventListener("click", stopSession);
+document.addEventListener("tick", () => updateTimerDisplay(timer.getTime()));
+document.addEventListener("end", () => handleTimerEnd());
