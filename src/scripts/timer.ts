@@ -24,11 +24,9 @@ export class Timer {
     }
 
     private emitEndEvent() {
-        console.log("endEvent");
         document.dispatchEvent(this.endEvent);
     }
     private emitTickEvent() {
-        console.log("tickEvent");
         document.dispatchEvent(this.tickEvent);
     }
 
