@@ -16,6 +16,13 @@ const timerDis = document.getElementById("timerDisplay") as HTMLImageElement;
 const timer = new Timer();
 const cardList: CardList = new CardList();
 
+function unfocusActiveElement() {
+    const activeElement = document.activeElement as HTMLElement;
+    if (activeElement) {
+        activeElement.blur();
+    }
+}
+
 async function getCardList(amount: number, query: string): Promise<Card[]> {
     let promises = Array.from({ length: amount }, () => Api.request(query));
     return Promise.all(promises);
@@ -77,6 +84,7 @@ async function startSession() {
     // fadeIn overlay
     overlayDis.style.animation = "fadeInOut 0.5s ease-in-out";
     overlayDis.style.visibility = "visible";
+    unfocusActiveElement();
 }
 
 function stopSession() {
@@ -86,6 +94,7 @@ function stopSession() {
     // fadeOut overlay
     overlayDis.style.animation = "fadeOutIn 0.5s ease-in-out";
     setTimeout(() => (overlayDis.style.visibility = "hidden"), 450);
+    unfocusActiveElement();
 }
 
 formDis.addEventListener("submit", handleFormSubmit);
