@@ -5,14 +5,17 @@
   "main": "index.js",
   "scripts": {
     "clear": "rm -rf ./dist/*",
+    "copy-static-files": "copyfiles -u 1 'src/**/*.!(ts)' dist",
     "build": "npm run clear && webpack && npm run copy-static-files",
-    "start": "npm run build && open ./dist/index.html",
-    "copy-static-files": "copyfiles -u 1 'src/**/*.!(ts)' dist"
+    "open": "if command open; then open ./dist/index.html; else wslview ./dist/index.html; fi",
+    "start": "npm run build && npm run open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "clean-css": "^5.3.3",
+    "clean-css-cli": "^5.6.3",
     "copyfiles": "^2.4.1",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
