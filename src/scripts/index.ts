@@ -56,20 +56,33 @@ function updateTimerDisplay(time: number) {
     const seconds = String(Math.floor(time % 60)).padStart(2, "0");
     timerDis.innerHTML = `${hours}:${minutes}:${seconds}`;
 }
-async function updateImage() {
+function updateImage() {
     const card: Card = cardList.getCurrent();
     nameDis.innerHTML = card.name;
     imageDis.src = card.image_uris.art_crop;
-    timer.reset();
-    timer.start();
 }
 
 async function handleTimerEnd() {
+    console.log("handleEnd");
     if (cardList.isCurrentLast()) {
         stopSession();
         return;
     }
     cardList.setToNext();
+    updateImage();
+    timer.reset();
+    timer.start();
+}
+
+function previousImage() {
+    cardList.setToPrevious();
+    timer.reset();
+    updateImage();
+}
+
+function nextImage() {
+    cardList.setToNext();
+    timer.reset();
     updateImage();
 }
 
@@ -80,6 +93,8 @@ async function startSession() {
     timer.setStartTime(formValues.duration);
 
     updateImage();
+    timer.reset();
+    timer.start();
 
     // fadeIn overlay
     overlayDis.style.animation = "fadeInOut 0.5s ease-in-out";
@@ -99,5 +114,7 @@ function stopSession() {
 
 formDis.addEventListener("submit", handleFormSubmit);
 stopBut.addEventListener("click", stopSession);
+prevBut.addEventListener("click", previousImage);
+nextBut.addEventListener("click", nextImage);
 document.addEventListener("tick", () => updateTimerDisplay(timer.getTime()));
 document.addEventListener("end", () => handleTimerEnd());
