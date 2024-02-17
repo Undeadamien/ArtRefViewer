@@ -81,6 +81,10 @@ function previousImage() {
 }
 
 function nextImage() {
+    if (cardList.isCurrentLast()) {
+        stopSession();
+        return;
+    }
     cardList.setToNext();
     timer.reset();
     updateImage();
