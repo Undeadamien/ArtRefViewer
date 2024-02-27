@@ -7,7 +7,7 @@
     "clear": "rm -rf ./dist/*",
     "copy-static-files": "copyfiles -u 1 'src/**/*.!(ts)' dist",
     "build": "npm run clear && webpack && npm run copy-static-files",
-    "open": "if command open; then open ./dist/index.html; else wslview ./dist/index.html; fi",
+    "open": "if command -v open > /dev/null 2>&1; then open ./dist/index.html; else wslview ./dist/index.html; fi",
     "start": "npm run build && npm run open"
   },
   "keywords": [],
